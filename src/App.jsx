@@ -7,6 +7,7 @@ import Broadcast from './pages/Broadcast';
 import KnowledgeBase from './pages/KnowledgeBase';
 import UploadData from './pages/UploadData';
 import PrivacyPolicy from './pages/PrivacyPolicy';
+import TermsOfService from './pages/TermsOfService';
 
 export default function App() {
   return (
@@ -35,6 +36,7 @@ export default function App() {
           <Route path="/knowledge" element={<KnowledgeBase />} />
           <Route path="/upload" element={<UploadData />} />
           <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+          <Route path="/terms-of-service" element={<TermsOfService />} />
         </Routes>
       </Layout>
     </BrowserRouter>

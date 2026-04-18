@@ -10,6 +10,7 @@ const titles = {
   '/knowledge': 'Knowledge Base',
   '/upload': 'Upload Data',
   '/privacy-policy': 'Privacy Policy',
+  '/terms-of-service': 'Terms of Service',
 };
 
 export default function Layout({ children }) {
