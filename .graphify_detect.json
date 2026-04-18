@@ -1,0 +1,45 @@
+{
+  "files": {
+    "code": [
+      "vite.config.js",
+      "src\\App.jsx",
+      "src\\counter.ts",
+      "src\\main.jsx",
+      "src\\main.ts",
+      "src\\components\\agents\\AgentCard.jsx",
+      "src\\components\\broadcast\\LeadsUploader.jsx",
+      "src\\components\\broadcast\\MessageComposer.jsx",
+      "src\\components\\dashboard\\StatsCard.jsx",
+      "src\\components\\knowledge\\KnowledgeEditor.jsx",
+      "src\\components\\layout\\Header.jsx",
+      "src\\components\\layout\\Layout.jsx",
+      "src\\components\\layout\\Sidebar.jsx",
+      "src\\components\\ui\\Badge.jsx",
+      "src\\components\\ui\\Button.jsx",
+      "src\\components\\ui\\Card.jsx",
+      "src\\components\\ui\\Modal.jsx",
+      "src\\components\\ui\\Toggle.jsx",
+      "src\\components\\upload\\CsvUploader.jsx",
+      "src\\data\\mockData.js",
+      "src\\lib\\supabase.js",
+      "src\\pages\\Agents.jsx",
+      "src\\pages\\Broadcast.jsx",
+      "src\\pages\\Dashboard.jsx",
+      "src\\pages\\KnowledgeBase.jsx",
+      "src\\pages\\UploadData.jsx"
+    ],
+    "document": [],
+    "paper": [],
+    "image": [
+      "public\\favicon.svg",
+      "public\\icons.svg"
+    ],
+    "video": []
+  },
+  "total_files": 28,
+  "total_words": 8343,
+  "needs_graph": false,
+  "warning": "Corpus is ~8,343 words - fits in a single context window. You may not need a graph.",
+  "skipped_sensitive": [],
+  "graphifyignore_patterns": 0
+}

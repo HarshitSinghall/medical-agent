@@ -1,0 +1,147 @@
+{
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "436a077a-e485-41d3-8dab-fee90b5b65e7",
+      "name": "Manual Trigger",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -4336,
+        1376
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "getAll",
+        "tableId": "chat_interacted",
+        "returnAll": true,
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "last_interacted",
+              "condition": "gte",
+              "keyValue": "={{ new Date(Date.now() - 24 * 60 * 60 * 1000).toISOString() }}"
+            }
+          ]
+        }
+      },
+      "id": "bc38db8b-a2ec-4e8f-9896-b8e84fa374d9",
+      "name": "Get Last 24h Users",
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        -4112,
+        1376
+      ],
+      "credentials": {
+        "supabaseApi": {
+          "id": "qtrnyCpOonczqPC6",
+          "name": "Supabase account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "// Access each user\nconst user = $json;\n\nreturn {\n  json: {\n    phone: user.phone || \"\",\n    name: user.name || \"User\",\n    last_interacted: user.last_interacted\n  }\n};"
+      },
+      "id": "1bc468aa-a325-4797-91f1-81111a7d0b89",
+      "name": "Prepare Data",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -3888,
+        1376
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "conditions": [
+            {
+              "leftValue": "={{ $json.phone }}",
+              "operator": {
+                "type": "string",
+                "operation": "notEmpty"
+              }
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "137d6754-5a64-472b-bb94-a7402d24f080",
+      "name": "Has Phone?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [
+        -3664,
+        1376
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "// Example action (replace with WhatsApp API)\nreturn {\n  json: {\n    message: `Hello ${$json.name}, thanks for interacting with us!`\n  }\n};"
+      },
+      "id": "0d433916-2bf1-4c3d-90c7-bd3e6923735f",
+      "name": "Send Message (Mock)",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -3440,
+        1376
+      ]
+    }
+  ],
+  "connections": {
+    "Manual Trigger": {
+      "main": [
+        [
+          {
+            "node": "Get Last 24h Users",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Last 24h Users": {
+      "main": [
+        [
+          {
+            "node": "Prepare Data",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Prepare Data": {
+      "main": [
+        [
+          {
+            "node": "Has Phone?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Has Phone?": {
+      "main": [
+        [
+          {
+            "node": "Send Message (Mock)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "pinData": {},
+  "meta": {
+    "instanceId": "89bf0c20cdac143b2678d6e3326c70cda81e69aa02785f2203bd462fab8ad525"
+  }
+}
