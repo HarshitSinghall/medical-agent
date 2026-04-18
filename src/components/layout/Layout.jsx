@@ -9,6 +9,7 @@ const titles = {
   '/broadcast': 'Broadcast',
   '/knowledge': 'Knowledge Base',
   '/upload': 'Upload Data',
+  '/privacy-policy': 'Privacy Policy',
 };
 
 export default function Layout({ children }) {

@@ -1,5 +1,5 @@
 import { NavLink } from 'react-router-dom';
-import { LayoutDashboard, Bot, Megaphone, BookOpen, CloudUpload, Pill, X } from 'lucide-react';
+import { LayoutDashboard, Bot, Megaphone, BookOpen, CloudUpload, Pill, X, Shield } from 'lucide-react';
 
 const navItems = [
   { to: '/', icon: LayoutDashboard, label: 'Dashboard' },
@@ -7,6 +7,7 @@ const navItems = [
   { to: '/broadcast', icon: Megaphone, label: 'Broadcast' },
   { to: '/knowledge', icon: BookOpen, label: 'Knowledge Base' },
   { to: '/upload', icon: CloudUpload, label: 'Upload Data' },
+  { to: '/privacy-policy', icon: Shield, label: 'Privacy Policy' },
 ];
 
 export default function Sidebar({ open, onClose }) {
