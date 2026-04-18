@@ -11,6 +11,7 @@ const titles = {
   '/upload': 'Upload Data',
   '/privacy-policy': 'Privacy Policy',
   '/terms-of-service': 'Terms of Service',
+  '/user-data-deletion': 'Data Deletion Instructions',
 };
 
 export default function Layout({ children }) {

@@ -8,6 +8,7 @@ import KnowledgeBase from './pages/KnowledgeBase';
 import UploadData from './pages/UploadData';
 import PrivacyPolicy from './pages/PrivacyPolicy';
 import TermsOfService from './pages/TermsOfService';
+import UserDataDeletion from './pages/UserDataDeletion';
 
 export default function App() {
   return (
@@ -37,6 +38,7 @@ export default function App() {
           <Route path="/upload" element={<UploadData />} />
           <Route path="/privacy-policy" element={<PrivacyPolicy />} />
           <Route path="/terms-of-service" element={<TermsOfService />} />
+          <Route path="/user-data-deletion" element={<UserDataDeletion />} />
         </Routes>
       </Layout>
     </BrowserRouter>
