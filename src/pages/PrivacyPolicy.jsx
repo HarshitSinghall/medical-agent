@@ -156,8 +156,8 @@ export default function PrivacyPolicy() {
               If you have any questions about this Privacy Policy or our data practices, please contact us at:
             </p>
             <div className="text-primary-700 font-medium">
-              <p>privacy@medstore.com</p>
-              <p>MedStore Privacy Team</p>
+              <p>privacy@Healthriver.com</p>
+              <p>Healthriver Privacy Team</p>
             </div>
           </div>
         </div>

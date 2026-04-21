@@ -28,7 +28,7 @@ export default function TermsOfService() {
             <div className="space-y-3">
               <h2 className="text-xl font-semibold text-gray-900">Acceptance of Terms</h2>
               <div className="text-gray-600 space-y-2">
-                <p>By accessing and using MedStore's services, you accept and agree to be bound by the terms and provision of this agreement. If you do not agree to abide by the above, please do not use this service.</p>
+                <p>By accessing and using Healthriver's services, you accept and agree to be bound by the terms and provision of this agreement. If you do not agree to abide by the above, please do not use this service.</p>
                 <p>These Terms of Service apply to all users of the site, including without limitation users who are browsers, vendors, customers, merchants, and/or contributors of content.</p>
               </div>
             </div>
@@ -40,14 +40,14 @@ export default function TermsOfService() {
           <div className="space-y-3">
             <h2 className="text-xl font-semibold text-gray-900">Use License</h2>
             <div className="text-gray-600 space-y-2">
-              <p>Permission is granted to temporarily download one copy of the materials on MedStore's website for personal, non-commercial transitory viewing only. This is the grant of a license, not a transfer of title, and under this license you may not:</p>
+              <p>Permission is granted to temporarily download one copy of the materials on Healthriver's website for personal, non-commercial transitory viewing only. This is the grant of a license, not a transfer of title, and under this license you may not:</p>
               <ul className="list-disc list-inside space-y-1 ml-4">
                 <li>Modify or copy the materials</li>
                 <li>Use the materials for any commercial purpose or for any public display</li>
                 <li>Attempt to reverse engineer any software contained on the website</li>
                 <li>Remove any copyright or other proprietary notations from the materials</li>
               </ul>
-              <p>This license shall automatically terminate if you violate any of these restrictions and may be terminated by MedStore at any time.</p>
+              <p>This license shall automatically terminate if you violate any of these restrictions and may be terminated by Healthriver at any time.</p>
             </div>
           </div>
         </div>
@@ -101,7 +101,7 @@ export default function TermsOfService() {
             <div className="space-y-3">
               <h2 className="text-xl font-semibold text-gray-900">Limitation of Liability</h2>
               <div className="text-gray-600 space-y-2">
-                <p>In no event shall MedStore or its suppliers be liable for any damages (including, without limitation, damages for loss of data or profit, or due to business interruption) arising out of the use or inability to use the materials on our website, even if MedStore or a MedStore authorized representative has been notified orally or in writing of the possibility of such damage.</p>
+                <p>In no event shall Healthriver or its suppliers be liable for any damages (including, without limitation, damages for loss of data or profit, or due to business interruption) arising out of the use or inability to use the materials on our website, even if Healthriver or a Healthriver authorized representative has been notified orally or in writing of the possibility of such damage.</p>
                 <p>Because some jurisdictions do not allow limitations on implied warranties, or limitations of liability for consequential or incidental damages, these limitations may not apply to you.</p>
               </div>
             </div>
@@ -113,7 +113,7 @@ export default function TermsOfService() {
           <div className="space-y-3">
             <h2 className="text-xl font-semibold text-gray-900">Intellectual Property</h2>
             <div className="text-gray-600 space-y-2">
-              <p>The service and its original content, features, and functionality are and will remain the exclusive property of MedStore and its licensors. The service is protected by copyright, trademark, and other laws. Our trademarks and trade dress may not be used in connection with any product or service without our prior written consent.</p>
+              <p>The service and its original content, features, and functionality are and will remain the exclusive property of Healthriver and its licensors. The service is protected by copyright, trademark, and other laws. Our trademarks and trade dress may not be used in connection with any product or service without our prior written consent.</p>
             </div>
           </div>
         </div>
@@ -134,7 +134,7 @@ export default function TermsOfService() {
           <div className="space-y-3">
             <h2 className="text-xl font-semibold text-gray-900">Governing Law</h2>
             <div className="text-gray-600 space-y-2">
-              <p>These Terms shall be interpreted and governed by the laws of the jurisdiction in which MedStore operates, without regard to its conflict of law provisions.</p>
+              <p>These Terms shall be interpreted and governed by the laws of the jurisdiction in which Healthriver operates, without regard to its conflict of law provisions.</p>
               <p>Our failure to enforce any right or provision of these Terms will not be considered a waiver of those rights.</p>
             </div>
           </div>
@@ -159,8 +159,8 @@ export default function TermsOfService() {
               If you have any questions about these Terms of Service, please contact us:
             </p>
             <div className="text-primary-700 font-medium">
-              <p>legal@medstore.com</p>
-              <p>MedStore Legal Team</p>
+              <p>legal@Healthriver.com</p>
+              <p>Healthriver Legal Team</p>
             </div>
           </div>
         </div>

@@ -34,7 +34,7 @@ export const knowledgeBase = [
   {
     id: 'KB-001',
     title: 'Store Hours & Location',
-    content: 'MedStore is open Monday to Saturday, 8:00 AM to 10:00 PM. Sunday hours are 9:00 AM to 6:00 PM. Located at 123 Health Avenue, Medical District, Mumbai 400001.',
+    content: 'Healthriver is open Monday to Saturday, 8:00 AM to 10:00 PM. Sunday hours are 9:00 AM to 6:00 PM. Located at 123 Health Avenue, Medical District, Mumbai 400001.',
     updatedAt: '2026-03-15',
   },
   {

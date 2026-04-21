@@ -55,7 +55,7 @@ export default function UserDataDeletion() {
                     <h3 className="font-medium text-gray-900 mb-2">Method 1: Email Request</h3>
                     <p className="text-sm text-gray-600 mb-2">Send an email to our Data Protection Officer:</p>
                     <div className="bg-white rounded border p-3 font-mono text-sm">
-                      privacy@medstore.com
+                      privacy@Healthriver.com
                     </div>
                     <p className="text-sm text-gray-600 mt-2">Include "Data Deletion Request" in the subject line.</p>
                   </div>
@@ -241,7 +241,7 @@ export default function UserDataDeletion() {
               If you have questions about data deletion or need assistance with your request:
             </p>
             <div className="text-primary-700 font-medium space-y-1">
-              <p>📧 privacy@medstore.com</p>
+              <p>📧 privacy@Healthriver.com</p>
               <p>📞 +1 (555) 123-4567</p>
               <p>🕒 Mon-Fri, 9 AM - 6 PM EST</p>
             </div>

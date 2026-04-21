@@ -17,7 +17,7 @@ const titles = {
 export default function Layout({ children }) {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const location = useLocation();
-  const title = titles[location.pathname] || 'MedStore';
+  const title = titles[location.pathname] || 'Healthriver';
 
   return (
     <div className="min-h-screen bg-gray-50/80">

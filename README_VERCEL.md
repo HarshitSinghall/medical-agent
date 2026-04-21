@@ -1,4 +1,4 @@
-# MedStore Admin Portal - Vercel Deployment Quick Reference
+# Healthriver Admin Portal - Vercel Deployment Quick Reference
 
 ## What's Been Done ✅
 
@@ -19,7 +19,7 @@ Your project is now **fully secured** and ready for Vercel deployment:
 ```bash
 # Go to https://github.com/new and create a new repository
 # Then run:
-git remote add origin https://github.com/yourusername/medstore-admin.git
+git remote add origin https://github.com/yourusername/Healthriver-admin.git
 git branch -M main
 git push -u origin main
 ```

@@ -214,7 +214,7 @@ export default function KnowledgeBase() {
               type="text"
               value={data.storeName}
               onChange={(e) => update('storeName', e.target.value)}
-              placeholder="e.g. MedStore Pharmacy"
+              placeholder="e.g. Healthriver Pharmacy"
               className={inputCls}
             />
           </div>
@@ -316,7 +316,7 @@ export default function KnowledgeBase() {
               type="email"
               value={data.email}
               onChange={(e) => update('email', e.target.value)}
-              placeholder="contact@medstore.in"
+              placeholder="contact@Healthriver.in"
               className={inputCls}
             />
           </div>
@@ -330,7 +330,7 @@ export default function KnowledgeBase() {
               type="url"
               value={data.website}
               onChange={(e) => update('website', e.target.value)}
-              placeholder="https://medstore.in"
+              placeholder="https://Healthriver.in"
               className={inputCls}
             />
           </div>

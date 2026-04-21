@@ -1,7 +1,7 @@
 # Vercel Deployment Guide
 
 ## Overview
-This guide will help you deploy your MedStore admin portal to Vercel safely without exposing sensitive credentials.
+This guide will help you deploy your Healthriver admin portal to Vercel safely without exposing sensitive credentials.
 
 ## Prerequisites
 - Git installed

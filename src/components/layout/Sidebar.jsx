@@ -33,7 +33,7 @@ export default function Sidebar({ open, onClose }) {
               <Pill className="text-white" size={20} />
             </div>
             <div>
-              <h1 className="text-white font-bold text-lg leading-none tracking-tight">MedStore</h1>
+              <h1 className="text-white font-bold text-lg leading-none tracking-tight">Healthriver</h1>
               <p className="text-gray-500 text-[11px] mt-0.5 font-medium tracking-wide uppercase">Admin Portal</p>
             </div>
           </div>
@@ -76,7 +76,7 @@ export default function Sidebar({ open, onClose }) {
             </div>
             <div>
               <p className="text-[11px] text-gray-500 font-medium">Powered by</p>
-              <p className="text-[12px] text-gray-400 font-semibold">n8n AI Agents</p>
+              <p className="text-[12px] text-gray-400 font-semibold">LeadupAI</p>
             </div>
           </div>
         </div>
