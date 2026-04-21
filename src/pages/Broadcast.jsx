@@ -21,7 +21,6 @@ export default function Broadcast() {
     setLeadsError('');
 
     try {
-      // Calculate 24 hours ago
       const twentyFourHoursAgo = new Date(Date.now() - 24 * 60 * 60 * 1000).toISOString();
 
       const { data, error } = await supabase
@@ -101,12 +100,17 @@ export default function Broadcast() {
     };
 
     // Send to backend proxy (Vercel serverless function)
-    try {
-      await fetch('/api/proxy-n8n', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload),
-      });
+    // Send GET request to n8n webhook with data as query params
+try {
+  const params = new URLSearchParams({
+    message: payload.message,
+    leads: JSON.stringify(payload.leads),
+  });
+
+  await fetch(
+    `https://leadupai.app.n8n.cloud/webhook-test/my-workflow?${params.toString()}`,
+    { method: 'GET' }
+  );
       // Simulate progress bar
       const interval = setInterval(() => {
         setProgress((prev) => {
