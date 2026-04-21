@@ -100,16 +100,13 @@ export default function Broadcast() {
       })),
     };
 
-    // Send to n8n webhook (test URL)
+    // Send to backend proxy (Vercel serverless function)
     try {
-      await fetch(
-        'https://leaduapi.app.n8n.cloud/webhook-test/dcf38fa5-23d0-4958-b4dc-aa83d111463f',
-        {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(payload),
-        }
-      );
+      await fetch('/api/proxy-n8n', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      });
       // Simulate progress bar
       const interval = setInterval(() => {
         setProgress((prev) => {
