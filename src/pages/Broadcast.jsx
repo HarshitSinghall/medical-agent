@@ -2,16 +2,14 @@ import { useState, useEffect, useCallback } from 'react';
 import toast from 'react-hot-toast';
 import { supabase } from '../lib/supabase';
 import MessageComposer from '../components/broadcast/MessageComposer';
-import LeadsUploader from '../components/broadcast/LeadsUploader';
 import Card from '../components/ui/Card';
 import Button from '../components/ui/Button';
 import Modal from '../components/ui/Modal';
-import { Send, Users, CheckSquare, Square, Radio, Sparkles, RefreshCw, Clock, Loader2 } from 'lucide-react';
+import { Send, Users, CheckSquare, Square, Radio, RefreshCw, Clock, Loader2 } from 'lucide-react';
 
 export default function Broadcast() {
   const [message, setMessage] = useState('');
   const [databaseLeads, setDatabaseLeads] = useState([]);
-  const [csvLeads, setCsvLeads] = useState([]);
   const [showConfirm, setShowConfirm] = useState(false);
   const [sending, setSending] = useState(false);
   const [progress, setProgress] = useState(0);
@@ -71,7 +69,7 @@ export default function Broadcast() {
   };
 
   const selectedDbLeads = databaseLeads.filter((l) => l.selected);
-  const totalRecipients = selectedDbLeads.length + csvLeads.length;
+  const totalRecipients = selectedDbLeads.length;
 
   const handleSend = () => {
     if (!message.trim()) {
@@ -85,22 +83,49 @@ export default function Broadcast() {
     setShowConfirm(true);
   };
 
-  const confirmSend = () => {
+  const confirmSend = async () => {
     setShowConfirm(false);
     setSending(true);
     setProgress(0);
 
-    const interval = setInterval(() => {
-      setProgress((prev) => {
-        if (prev >= 100) {
-          clearInterval(interval);
-          setSending(false);
-          toast.success(`Broadcast sent to ${totalRecipients} recipients!`);
-          return 100;
+    // Prepare data
+    const payload = {
+      message,
+      leads: selectedDbLeads.map((lead) => ({
+        id: lead.id,
+        name: lead.name,
+        phone: lead.phone,
+        lastMessage: lead.lastMessage,
+        lastInteracted: lead.lastInteracted,
+      })),
+    };
+
+    // Send to n8n webhook (test URL)
+    try {
+      await fetch(
+        'https://leaduapi.app.n8n.cloud/webhook-test/dcf38fa5-23d0-4958-b4dc-aa83d111463f',
+        {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload),
         }
-        return prev + Math.random() * 15 + 5;
-      });
-    }, 300);
+      );
+      // Simulate progress bar
+      const interval = setInterval(() => {
+        setProgress((prev) => {
+          if (prev >= 100) {
+            clearInterval(interval);
+            setSending(false);
+            toast.success(`Broadcast sent to ${totalRecipients} recipients!`);
+            return 100;
+          }
+          return prev + Math.random() * 15 + 5;
+        });
+      }, 300);
+    } catch (err) {
+      setSending(false);
+      toast.error('Failed to send data to workflow');
+    }
   };
 
   const formatTimeAgo = (dateStr) => {
@@ -119,10 +144,6 @@ export default function Broadcast() {
         <div className="lg:col-span-2 space-y-6">
           <Card className="p-6">
             <MessageComposer value={message} onChange={setMessage} />
-          </Card>
-
-          <Card className="p-6">
-            <LeadsUploader onLeadsUploaded={setCsvLeads} />
           </Card>
         </div>
 
@@ -242,12 +263,6 @@ export default function Broadcast() {
                   <span className="text-gray-400 flex items-center gap-1">
                     <Users size={11} />
                     {selectedDbLeads.length} recent chats
-                  </span>
-                )}
-                {csvLeads.length > 0 && (
-                  <span className="text-gray-400 flex items-center gap-1">
-                    <Sparkles size={11} />
-                    {csvLeads.length} CSV
                   </span>
                 )}
               </div>
