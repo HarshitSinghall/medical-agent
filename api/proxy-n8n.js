@@ -8,7 +8,7 @@ export default async function handler(req, res) {
   }
 
   // The n8n webhook URL (test for now)
-  const n8nUrl = 'https://leaduapi.app.n8n.cloud/webhook-test/dcf38fa5-23d0-4958-b4dc-aa83d111463f';
+  const n8nUrl = 'https://leadupai.app.n8n.cloud/webhook-test/my-workflow';
 
   try {
     const n8nRes = await fetch(n8nUrl, {
