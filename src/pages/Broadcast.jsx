@@ -101,16 +101,16 @@ export default function Broadcast() {
 
     // Send to backend proxy (Vercel serverless function)
     // Send GET request to n8n webhook with data as query params
-try {
-  const params = new URLSearchParams({
-    message: payload.message,
-    leads: JSON.stringify(payload.leads),
-  });
+    try {
+      const params = new URLSearchParams({
+        message: payload.message,
+        leads: JSON.stringify(payload.leads),
+      });
 
-  await fetch(
-    `https://leadupai.app.n8n.cloud/webhook-test/my-workflow?${params.toString()}`,
-    { method: 'GET' }
-  );
+      await fetch(
+        `https://leadupai.app.n8n.cloud/webhook/my-workflow?${params.toString()}`,
+        { method: 'GET' }
+      );
       // Simulate progress bar
       const interval = setInterval(() => {
         setProgress((prev) => {
