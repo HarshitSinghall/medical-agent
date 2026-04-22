@@ -9,7 +9,7 @@ export default async function handler(req, res) {
 
   // Build query string from all query parameters
   const params = new URLSearchParams(req.query).toString();
-  const n8nUrl = `https://leadupai.app.n8n.cloud/webhook-test/my-workflow?${params}`;
+  const n8nUrl = `https://leadupai.app.n8n.cloud/webhook/my-workflow?${params}`;
 
   try {
     const n8nRes = await fetch(n8nUrl, { method: 'GET' });

@@ -1,5 +1,6 @@
 import { NavLink } from 'react-router-dom';
-import { LayoutDashboard, Bot, Megaphone, BookOpen, CloudUpload, Pill, X, Shield, FileCheck, UserX } from 'lucide-react';
+import { LayoutDashboard, Bot, Megaphone, BookOpen, CloudUpload, Pill, X, Shield, FileCheck, UserX, LogOut } from 'lucide-react';
+import { useAuth } from '../../context/AuthContext';
 
 const navItems = [
   { to: '/', icon: LayoutDashboard, label: 'Dashboard' },
@@ -13,6 +14,12 @@ const navItems = [
 ];
 
 export default function Sidebar({ open, onClose }) {
+  const { user, signOut } = useAuth();
+
+  const initials = user?.email
+    ? user.email.slice(0, 2).toUpperCase()
+    : 'AD';
+
   return (
     <>
       {open && (
@@ -46,7 +53,7 @@ export default function Sidebar({ open, onClose }) {
         </div>
 
         {/* Navigation */}
-        <nav className="flex-1 px-3 py-5 space-y-1">
+        <nav className="flex-1 px-3 py-5 space-y-1 overflow-y-auto">
           <p className="px-3 mb-3 text-[10px] font-semibold text-gray-600 uppercase tracking-widest">Menu</p>
           {navItems.map((item) => (
             <NavLink
@@ -68,16 +75,33 @@ export default function Sidebar({ open, onClose }) {
           ))}
         </nav>
 
-        {/* Footer */}
-        <div className="px-5 py-4 border-t border-white/[0.06]">
-          <div className="flex items-center gap-3">
-            <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-primary-500/20 to-primary-700/20 flex items-center justify-center">
-              <Bot size={14} className="text-primary-400" />
+        {/* Footer — User + Logout */}
+        <div className="px-4 py-4 border-t border-white/[0.06] space-y-3">
+          {/* User info */}
+          <div className="flex items-center gap-3 px-1">
+            <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-primary-500 to-primary-700 flex items-center justify-center shrink-0">
+              <span className="text-white text-[11px] font-bold">{initials}</span>
             </div>
-            <div>
-              <p className="text-[11px] text-gray-500 font-medium">Powered by</p>
-              <p className="text-[12px] text-gray-400 font-semibold">LeadupAI</p>
+            <div className="min-w-0 flex-1">
+              <p className="text-[11px] text-gray-500 font-medium truncate">Signed in as</p>
+              <p className="text-[12px] text-gray-300 font-semibold truncate">{user?.email ?? 'Admin'}</p>
             </div>
+          </div>
+
+          {/* Logout button */}
+          <button
+            id="sidebar-logout"
+            onClick={signOut}
+            className="w-full flex items-center gap-2.5 px-3 py-2.5 rounded-xl text-[13px] font-medium text-red-400 hover:text-red-300 hover:bg-red-500/10 transition-all duration-200 group cursor-pointer"
+          >
+            <LogOut size={16} className="shrink-0 group-hover:scale-105 transition-transform duration-200" />
+            Sign Out
+          </button>
+
+          {/* Branding */}
+          <div className="flex items-center gap-2 px-1 pt-1 border-t border-white/[0.04]">
+            <Bot size={12} className="text-primary-400 shrink-0" />
+            <p className="text-[11px] text-gray-600 font-medium">Powered by <span className="text-gray-500">LeadupAI</span></p>
           </div>
         </div>
       </aside>
