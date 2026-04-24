@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "PowerShell(Import-Csv *)",
+      "Bash(node -c src/pages/KnowledgeBase.jsx)"
+    ]
+  }
+}

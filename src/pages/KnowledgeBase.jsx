@@ -20,6 +20,14 @@ import {
 
 const DAYS = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
 
+const BRANCHES = [
+  { id: 1, code: 'PMBJKN', label: 'Main Store' },
+  { id: 2, code: 'JAB-02', label: 'Main Store' },
+  { id: 3, code: 'JAK-02', label: 'Main Store' },
+];
+
+const BRANCH_STORAGE_KEY = 'kb:selectedBranchId';
+
 const defaultHours = DAYS.reduce((acc, day) => {
   acc[day] = {
     open: day === 'Sunday' ? '09:00' : '08:00',
@@ -45,9 +53,10 @@ const emptyData = {
 };
 
 /* ─── Supabase helpers ─── */
-function toRow(data) {
+function toRow(data, branch) {
   return {
-    id: 1,
+    id: branch.id,
+    branch_code: branch.code,
     store_name: data.storeName,
     address: data.address,
     city: data.city,
@@ -82,22 +91,34 @@ function fromRow(row) {
 }
 
 export default function KnowledgeBase() {
+  const [selectedId, setSelectedId] = useState(() => {
+    const stored = typeof window !== 'undefined' ? parseInt(localStorage.getItem(BRANCH_STORAGE_KEY), 10) : NaN;
+    return BRANCHES.some((b) => b.id === stored) ? stored : BRANCHES[0].id;
+  });
+  const selectedBranch = BRANCHES.find((b) => b.id === selectedId) || BRANCHES[0];
   const [data, setData] = useState(emptyData);
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
   const [saved, setSaved] = useState(false);
   const [lastUpdated, setLastUpdated] = useState(null);
 
-  /* ── Fetch on mount ── */
+  /* ── Fetch on branch change ── */
   useEffect(() => {
+    let cancelled = false;
+    setLoading(true);
+    setSaved(false);
+    setLastUpdated(null);
+    setData(emptyData);
+
     (async () => {
       try {
         const { data: row, error } = await supabase
           .from('store_details')
           .select('*')
-          .eq('id', 1)
+          .eq('id', selectedId)
           .maybeSingle();
 
+        if (cancelled) return;
         if (error) throw error;
         if (row) {
           setData(fromRow(row));
@@ -105,13 +126,23 @@ export default function KnowledgeBase() {
           setSaved(true);
         }
       } catch (err) {
+        if (cancelled) return;
         console.error('Failed to load store details:', err);
         toast.error('Failed to load store details');
       } finally {
-        setLoading(false);
+        if (!cancelled) setLoading(false);
       }
     })();
-  }, []);
+
+    return () => {
+      cancelled = true;
+    };
+  }, [selectedId]);
+
+  const handleBranchChange = (id) => {
+    setSelectedId(id);
+    localStorage.setItem(BRANCH_STORAGE_KEY, String(id));
+  };
 
   const update = (field, value) => {
     setData((prev) => ({ ...prev, [field]: value }));
@@ -138,7 +169,7 @@ export default function KnowledgeBase() {
 
     setSaving(true);
     try {
-      const row = toRow(data);
+      const row = toRow(data, selectedBranch);
       const { error } = await supabase
         .from('store_details')
         .upsert(row, { onConflict: 'id' });
@@ -197,6 +228,66 @@ export default function KnowledgeBase() {
           )}
         </div>
       </div>
+
+      {/* ───── Branch Selector ───── */}
+      <Card className="p-6">
+        <h2 className="text-[15px] font-bold text-gray-900 flex items-center gap-2 mb-3">
+          <Building2 size={16} className="text-primary-600" />
+          Store Location
+        </h2>
+        <p className="text-xs text-gray-500 mb-4">
+          Select a store ID to view or edit its details. Each ID maps to one branch record in the database.
+        </p>
+
+        {/* Dropdown (primary) */}
+        <div className="mb-4 max-w-xs">
+          <label className="block text-xs font-semibold text-gray-600 mb-1.5">Store ID</label>
+          <select
+            value={selectedId}
+            onChange={(e) => handleBranchChange(parseInt(e.target.value, 10))}
+            className={inputCls}
+          >
+            {BRANCHES.map((b) => (
+              <option key={b.id} value={b.id}>
+                ID {b.id} — {b.code} ({b.label})
+              </option>
+            ))}
+          </select>
+        </div>
+
+        {/* Tile shortcuts */}
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+          {BRANCHES.map((b) => {
+            const active = b.id === selectedId;
+            return (
+              <button
+                key={b.id}
+                type="button"
+                onClick={() => handleBranchChange(b.id)}
+                className={`rounded-xl border px-4 py-3 text-left transition-all ${
+                  active
+                    ? 'border-primary-500 bg-primary-50 ring-2 ring-primary-500/20'
+                    : 'border-gray-200 bg-white hover:border-primary-300 hover:bg-gray-50'
+                }`}
+              >
+                <div className="flex items-center justify-between">
+                  <div className={`text-sm font-semibold ${active ? 'text-primary-700' : 'text-gray-900'}`}>
+                    {b.code}
+                  </div>
+                  <span
+                    className={`text-[10px] font-bold px-2 py-0.5 rounded-full ${
+                      active ? 'bg-primary-500 text-white' : 'bg-gray-100 text-gray-500'
+                    }`}
+                  >
+                    ID {b.id}
+                  </span>
+                </div>
+                <div className="text-xs text-gray-500 mt-0.5">{b.label}</div>
+              </button>
+            );
+          })}
+        </div>
+      </Card>
 
       {/* ───── Location & Contact ───── */}
       <Card className="p-6">
