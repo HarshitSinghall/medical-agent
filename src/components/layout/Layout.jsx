@@ -9,6 +9,7 @@ const titles = {
   '/broadcast': 'Broadcast',
   '/knowledge': 'Knowledge Base',
   '/upload': 'Upload Data',
+  '/medicines-watched': 'Medicines Watched',
   '/privacy-policy': 'Privacy Policy',
   '/terms-of-service': 'Terms of Service',
   '/user-data-deletion': 'Data Deletion Instructions',

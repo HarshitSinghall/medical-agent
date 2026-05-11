@@ -9,6 +9,7 @@ import Agents from './pages/Agents';
 import Broadcast from './pages/Broadcast';
 import KnowledgeBase from './pages/KnowledgeBase';
 import UploadData from './pages/UploadData';
+import MedicinesWatched from './pages/MedicinesWatched';
 import PrivacyPolicy from './pages/PrivacyPolicy';
 import TermsOfService from './pages/TermsOfService';
 import UserDataDeletion from './pages/UserDataDeletion';
@@ -49,6 +50,7 @@ export default function App() {
                     <Route path="/broadcast" element={<Broadcast />} />
                     <Route path="/knowledge" element={<KnowledgeBase />} />
                     <Route path="/upload" element={<UploadData />} />
+                    <Route path="/medicines-watched" element={<MedicinesWatched />} />
                     <Route path="/privacy-policy" element={<PrivacyPolicy />} />
                     <Route path="/terms-of-service" element={<TermsOfService />} />
                     <Route path="/user-data-deletion" element={<UserDataDeletion />} />
